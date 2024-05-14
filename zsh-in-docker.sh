@@ -81,26 +81,26 @@ install_dependencies() {
         echo "If this fails, you need to do one of these options:"
         echo "   1) Install 'sudo' before calling this script"
         echo "OR"
-        echo "   2) Install the required dependencies: git curl zsh"
+        echo "   2) Install the required dependencies: curl zsh"
         return
     fi
 
     case $DIST in
         alpine)
-            $Sudo apk add --update --no-cache git curl zsh
+            $Sudo apk add --update --no-cache curl zsh
         ;;
         amzn)
             $Sudo yum update -y
-            $Sudo yum install -y git zsh
+            $Sudo yum install -y zsh
             $Sudo yum install -y ncurses-compat-libs # this is required for AMZN Linux (ref: https://github.com/emqx/emqx/issues/2503)
         ;;
         rhel|fedora|centos|rocky)
             $Sudo yum update -y
-            $Sudo yum install -y git zsh
+            $Sudo yum install -y zsh
         ;;
         *)
             $Sudo apt-get update
-            $Sudo apt-get -y install git curl zsh locales
+            $Sudo apt-get -y install curl zsh locales
             if [ "$VERSION" != "14.04" ]; then
                 $Sudo apt-get -y install locales-all
             fi
